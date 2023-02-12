@@ -16,6 +16,6 @@ public class SJF extends SchedulingAlgorithm{
                 return o1.getCpuBurst() - o2.getCpuBurst();
             }
            }};
-           reutrn nulll;
+           reutrn readyQueue.get(0);
    }
 }
