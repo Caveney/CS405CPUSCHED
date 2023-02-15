@@ -27,10 +27,10 @@ public class Driver {
 
             ScehdulingAlgorithm scheduler = null;
             switch (alg.toUpperCase()) {
-                case "FCFS-2":
+                case "FCFS-2.java":
                     scheduler = new FCFS-2(queue);
                     break;
-                case "SJF":
+                case "SJF.java":
                     scheduler = new SJF(queue);
                     break;
                 case "PS":
