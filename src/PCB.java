@@ -103,10 +103,10 @@ public class PCB {
     @java.lang.Override
     public java.lang.String toString() {
         return "Process " +
-                "[name='" + name + '\'' +
-                ", id=" + id +
-                ", arrivalTime=" + arrivalTime +
-                ", cpuBurst=" + cpuBurst +
-                ", priority=" + priority + "]";
+                "[name= '" + name + '\'' +
+                ", id= " + id +
+                ", arrivalTime= " + arrivalTime +
+                ", cpuBurst= " + cpuBurst +
+                ", priority= " + priority + "]";
     }
 }
