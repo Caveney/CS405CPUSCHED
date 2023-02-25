@@ -16,7 +16,8 @@ public class Driver {
             int id = 0;
             while(in.hasNextLine()) {
                 line = in.nextLine(); //grabs the pieces
-                String[] arr = arr[0];
+                String[] arr = line.split(",\s*");
+                String name = arr[0];
                 int arrivalTime = Integer.parseInt(arr[1]);
                 int cpuBurst = Integer.parseInt(arr[2]); // needs to be potentially multiple
                 int priority = Integer.parseInt(arr[3]); //prob needs to be next int
@@ -25,18 +26,12 @@ public class Driver {
                 queue.add(pcb);
             }
 
-            ScehdulingAlgorithm scheduler = null;
-            switch (alg.toUpperCase()) {
-                case "FCFS-2.java":
-                    scheduler = new FCFS-2(queue);
-                    break;
-                case "SJF.java":
-                    scheduler = new SJF(queue);
-                    break;
-                case "PS":
-                    scheduler = new PS(queue);
-                    break;
-            }
+            SchedulingAlgorithm scheduler = switch (alg.toUpperCase()) {
+                case "FCFS2.java" -> new FCFS(queue);
+                case "SJF.java" -> new SJF(queue);
+                case "PS" -> new PriorityScheduling(queue);
+                default -> null;
+            };
             scheduler.schedule();
         } catch (FileNotFoundException e){
                 e.printStackTrace();

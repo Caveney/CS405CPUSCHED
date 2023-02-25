@@ -1,4 +1,4 @@
-import java.util.list;
+import java.util.List;
 
 public class FCFS extends SchedulingAlgorithm {
     public FCFS(List<PCB> queue){
@@ -6,7 +6,7 @@ public class FCFS extends SchedulingAlgorithm {
       }
       
       @Override
-      public PCV pickNextProcess(){
+      public PCB pickNextProcess(){
           return readyQueue.get(0);
       }
 }
