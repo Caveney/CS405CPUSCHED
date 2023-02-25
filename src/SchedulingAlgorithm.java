@@ -10,7 +10,7 @@ public abstract class SchedulingAlgorithm {
   protected int systemTime; //system time or simulation time steps
   
   public SchedulingAlgorithm(String name, List<PCB> queue){
-    this.name = anme;
+    this.name = name;
     this.allProcs = queue;
     this.readyQueue = new ArrayList<>();
     this.finishedProcs = new ArrayList<>();
@@ -40,12 +40,12 @@ public abstract class SchedulingAlgorithm {
           
           systemTime += 1;
           
-          if(curProcess.getCPUBurst() == 0){
+          if(curProcess.getCpuBurst() == 0){
               curProcess.setFinishTime(systemTime);
               readyQueue.remove(curProcess);
               finishedProcs.add(curProcess);
               
-              system.out.println("Process " + name + "terminated at " + systemTime +
+              System.out.println("Process " + name + "terminated at " + systemTime +
                                   ", startTime =" curProcess.getStartTime() + 
                                   ", turnaroundTime = " + curProcess.geTurnaroundTime()
                                   + ", waitingTime = " + curProcess.getWaitingTime());

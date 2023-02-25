@@ -1,5 +1,5 @@
 import java.util.Collections;
-import java.util.Comoparator;
+import java.util.Comparator;
 import java.util.List;
 
 public class SJF extends SchedulingAlgorithm{
@@ -12,10 +12,10 @@ public class SJF extends SchedulingAlgorithm{
     public PCB pickNextProcess(){
         Collections.sort(readyQueue, new Comparator<PCB>(){
             @Override
-            public int compare(PCV o1, PCV o2){
+            public int compare(PCB o1, PCB o2){
                 return o1.getCpuBurst() - o2.getCpuBurst();
             }
            }};
-           reutrn readyQueue.get(0);
+           return readyQueue.get(0);
    }
 }
