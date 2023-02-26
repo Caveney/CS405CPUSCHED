@@ -5,18 +5,21 @@ public class PCB {
     private int id;
     private int arrivalTime;
     private int cpuBurst;
+
+    private int ioBurst;
     private int priority;
 
     //stats of process exec
     private int startTime, finishTime, turnAroundTime, waitingTime;
 
     //constructors
-    public PCB(String name, int id, int arrivalTime, int cpuBurst, int priority){
+    public PCB(String name, int id, int arrivalTime, int cpuBurst, int ioBurst, int priority){
         super();
         this.name = name;
         this.id = id;
         this.arrivalTime = arrivalTime;
         this.cpuBurst = cpuBurst;
+        this.ioBurst = ioBurst;
         this.priority = priority;
         this.startTime = -1;
         this.finishTime = -1;
@@ -52,6 +55,14 @@ public class PCB {
 
     public void setCpuBurst(int cpuBurst) {
         this.cpuBurst = cpuBurst;
+    }
+
+    public int getIoBurst() {
+        return ioBurst;
+    }
+
+    public void setIoBurst(int ioBurst) {
+        this.ioBurst = ioBurst;
     }
 
     public int getPriority() {
@@ -107,6 +118,7 @@ public class PCB {
                 ", id= " + id +
                 ", arrivalTime= " + arrivalTime +
                 ", cpuBurst= " + cpuBurst +
+                ", ioBurst= " + ioBurst +
                 ", priority= " + priority + "]";
     }
 }
