@@ -8,10 +8,16 @@ public class PCB {
     private int arrivalTime;
     private ArrayList<Integer> cpuBurst;
     private ArrayList<Integer> ioBurst;
+    //the current CPU burst on the process
     private int curCPU;
+    //the current IO burst on the process
     private int curIO;
 
+    private String state;
+
     private int priority;
+    private String curBurst;
+
 
     //stats of process exec
     private int startTime, finishTime, turnAroundTime, waitingTime;
@@ -26,9 +32,11 @@ public class PCB {
         this.curCPU = cpuBurst.get(0);
         this.ioBurst = ioBurst;
         this.curIO = ioBurst.get(0);
+        this.curBurst = "CPU";
         this.priority = priority;
         this.startTime = -1;
         this.finishTime = -1;
+        this.state = "NEW";
     }
 
     public String getName() {
@@ -133,15 +141,49 @@ public class PCB {
         this.waitingTime += burst;
     }
 
+    public String getCurBurst() {
+        return curBurst;
+    }
+
+    public void setCurBurst(String curBurst) {
+        this.curBurst = curBurst;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    //flips burst
+    public void flipCurBurst(){
+        //flag so the sched alg can decide whether cpu burst or io burst next
+        if (curBurst == "CPU"){
+            this.curBurst = "IO";
+        }
+        else{
+            this.curBurst = "CPU";
+        }
+    }
+
     public void curCPUBurst(){
         cpuBurst.remove(0);
-        this.curCPU = cpuBurst.get(0);
+        //stops out of bounds exception
+        if(cpuBurst.size() != 0) {
+            this.curCPU = cpuBurst.get(0);
+        }
     }
 
     public void curIOBurst(){
         ioBurst.remove(0);
-        this.curIO = ioBurst.get(0);
+        //stops out of bounds exception
+        if(ioBurst.size() != 0) {
+            this.curIO = ioBurst.get(0);
+        }
     }
+
 
 
     @java.lang.Override
@@ -149,6 +191,7 @@ public class PCB {
         return "Process " +
                 "[name= '" + name + '\'' +
                 ", id= " + id +
+                ", state= " + state +
                 ", arrivalTime= " + arrivalTime +
                 ", cpuBurst= " + cpuBurst +
                 ", ioBurst= " + ioBurst +

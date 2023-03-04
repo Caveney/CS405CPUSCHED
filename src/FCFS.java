@@ -1,8 +1,8 @@
 import java.util.List;
 
 public class FCFS extends SchedulingAlgorithm {
-    public FCFS(List<PCB> queue){
-        super("FCFS", queue);
+    public FCFS(List<PCB> queue, int manualMode){
+        super("FCFS", queue, manualMode);
       }
       
       @Override

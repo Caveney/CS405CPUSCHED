@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 public class PriorityScheduling extends SchedulingAlgorithm{
 
-    public PriorityScheduling(List<PCB> queue){
-        super("Priority Scheduling",queue);
+    public PriorityScheduling(List<PCB> queue, int manualMode){
+        super("Priority Scheduling",queue, manualMode);
     }
    
     @Override
