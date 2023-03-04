@@ -4,17 +4,16 @@ import java.util.Comparator;
 
 public class PriorityScheduling extends SchedulingAlgorithm{
 
-  public PriorityScheduling(List<PCB> queue){
-    super("Priority Scheduling",queue);
-   }
-   
-   @Override
-   public PCB pickNextProcess(){
-    Collections.sort(readyQueue, new Comparator<PCB>(){
-      @Override
-      public int compare(PCB o1, PCB o2){
-        return o1.getPriority() - o2.getPriority();
+    public PriorityScheduling(List<PCB> queue){
+        super("Priority Scheduling",queue);
     }
-    }};
-    return readyQueue.get(0);
+   
+    @Override
+    public PCB pickNextProcess(){
+        Collections.sort(readyQueue, new Comparator<PCB>(){
+        @Override
+        public int compare(PCB o1, PCB o2){return o1.getPriority() - o2.getPriority();}
+        });
+        return readyQueue.get(0);
+    }
 }

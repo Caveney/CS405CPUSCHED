@@ -19,19 +19,34 @@ public class Driver {
                 String[] arr = line.split(",\s*");
                 String name = arr[0];
                 int arrivalTime = Integer.parseInt(arr[1]);
-                int cpuBurst = Integer.parseInt(arr[2]); // needs to be potentially multiple
-                int priority = Integer.parseInt(arr[3]); //prob needs to be next int
-                //needs io burst and cpu burst lists prob
-                PCB pcb = new PCB(name, id++, arrivalTime, cpuBurst, priority);
+                int priority = Integer.parseInt(arr[2]);
+                ArrayList<Integer> cpuBursts = new ArrayList<Integer>();
+                ArrayList<Integer> ioBursts = new ArrayList<Integer>();
+                int  i = 3;
+                while(i < arr.length) {
+                    cpuBursts.add(Integer.parseInt(arr[i]));
+                    i++;
+                    if(i < arr.length){
+                        ioBursts.add(Integer.parseInt(arr[i]));
+                        i++;
+                    }
+                }
+                PCB pcb = new PCB(name, id++, arrivalTime, cpuBursts, ioBursts, priority);
                 queue.add(pcb);
             }
 
-            SchedulingAlgorithm scheduler = switch (alg.toUpperCase()) {
-                case "FCFS2.java" -> new FCFS(queue);
-                case "SJF.java" -> new SJF(queue);
-                case "PS" -> new PriorityScheduling(queue);
-                default -> null;
-            };
+            SchedulingAlgorithm scheduler = null;
+            switch (alg.toUpperCase()) {
+                case "FCFS":
+                    scheduler = new FCFS(queue);
+                    break;
+                case "SJF":
+                    scheduler = new SJF(queue);
+                    break;
+                case "PS":
+                    scheduler = new PriorityScheduling(queue);
+                    break;
+            }
             scheduler.schedule();
         } catch (FileNotFoundException e){
                 e.printStackTrace();

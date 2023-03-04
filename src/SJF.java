@@ -13,9 +13,9 @@ public class SJF extends SchedulingAlgorithm{
         Collections.sort(readyQueue, new Comparator<PCB>(){
             @Override
             public int compare(PCB o1, PCB o2){
-                return o1.getCpuBurst() - o2.getCpuBurst();
+                return o1.getCurCPU() - o2.getCurCPU();
             }
-           }};
+           });
            return readyQueue.get(0);
    }
 }
